@@ -2,6 +2,7 @@ class Solution:
     def findNonMinOrMax(self, nums: List[int]) -> int:
         if len(nums) <= 2:
             return -1
+        '''
         minNum = 101
         maxNum = 0
         for num in nums:
@@ -15,3 +16,6 @@ class Solution:
         for num in nums:
             if num > minNum and num < maxNum:
                 return num
+        '''
+        nums.sort()
+        return nums[1]
