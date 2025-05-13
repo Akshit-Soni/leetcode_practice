@@ -1,16 +1,20 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        sign = -1 if x < 0 else 1
+        INT_MAX = 2**31 - 1
+        INT_MIN = -2**31
+        
+        result = 0
+        is_negative = x < 0
         x = abs(x)
         
-        reversed_num = 0
-        while x > 0:
+        while x:
             digit = x % 10
             
-            if reversed_num > 214748364 or (reversed_num == 214748364 and digit > 7):
+            # Check for potential overflow
+            if (result > INT_MAX // 10) or (result == INT_MAX // 10 and digit > 7):
                 return 0
                 
-            reversed_num = reversed_num * 10 + digit
+            result = result * 10 + digit
             x //= 10
         
-        return sign * reversed_num
+        return -result if is_negative else result
